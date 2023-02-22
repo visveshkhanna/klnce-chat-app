@@ -40,25 +40,43 @@ var questions = {
 }
 
 var content = questions["start"];
-
+var doold = "";
 function fetchData(ev) {
+    var olds = document.querySelector(".olds");
+    content.text.forEach(e => {
+        doold += "<span id='name'>Mr. KLNCE: </span>" + e;
+        doold+="<br>";
+    })
+    doold = doold + "<span id='name'>You: </span>" + ev + "<br>";
+    olds.innerHTML = doold;
     var das = document.querySelector(".texts");
     var bus = document.querySelector(".buttons");
     var text_cont = "";
-    var button_cont = "";
+    var button_cont = "<span id='name'>You: </span>";
     content = content['buttons'][ev];
     var text = content["text"];
     var button = content["buttons"];
     text.forEach(e => {
-        text_cont += e;
+        text_cont += "<span id='name'>Mr. KLNCE: </span>"+e;
         text_cont += "<br>";
     });
     for(var e in button) {
         let a = '<button onclick="fetchData(\''+e+'\')">'+e+'</button>';
         button_cont += a;
     }
-    console.log(button_cont);
+    console.log(doold);
     das.innerHTML = text_cont;
     bus.innerHTML = button_cont;
     
+}
+
+function chaticon() {
+    console.log("Inside the chaticon function");
+    const chatui = document.getElementById("chat-ui");
+    console.log(chatui.style.display);
+    if (chatui.style.display != "none") {
+        chatui.style.display = "none";
+    } else {
+        chatui.style.display = "block";
+    }
 }

@@ -1,7 +1,57 @@
-.buttons {
-    padding-top: 5px;
+body {
+    font-family: consolas;
+}
+
+.buttons, .texts, .olds {
+    font-size: large;
+    padding-top: 2px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .buttons button {
-    margin: 5px;
+    font-family: consolas;
+    font-size: large;
+    background-color: white;
+    color: black;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin: 3px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: black;
+    color: white;
+    transition: .3s;
+}
+
+.chat {
+    bottom: 0px;
+    right: 0px;
+    position: absolute;
+    z-index: 1000;
+    border: 0px;
+    cursor: pointer;
+}
+
+.chat img {
+    width: 85px;
+    height: 85px;
+}
+
+#chat-ui {
+    width: 350px;
+    height: 450px;
+    bottom: 100px;
+    right: 10px;
+    position: absolute;
+    z-index: 1000;
+    border-radius: 30px;
+    border: 2px solid black;
+}
+
+#name {
+    color: red;
+    font-size: bold;
 }
