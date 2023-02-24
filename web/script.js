@@ -71,12 +71,14 @@ function fetchData(ev) {
 }
 
 function chaticon() {
-    console.log("Inside the chaticon function");
     const chatui = document.getElementById("chat-ui");
-    console.log(chatui.style.display);
+    const chaticon = document.getElementById("chat-icon");
     if (chatui.style.display != "none") {
         chatui.style.display = "none";
+        chaticon.setAttribute("src", "icon.png");
     } else {
         chatui.style.display = "block";
+        chaticon.setAttribute("src", "close-icon.png");
+
     }
 }

@@ -36,8 +36,8 @@ body {
 }
 
 .chat img {
-    width: 85px;
-    height: 85px;
+    width: 70px;
+    height: 70px;
 }
 
 #chat-ui {
@@ -49,9 +49,32 @@ body {
     z-index: 1000;
     border-radius: 30px;
     border: 2px solid black;
+    overflow: auto;
 }
 
 #name {
     color: red;
     font-size: bold;
+}
+
+#chat-ui .chat-admin {
+    padding: 5px;
+}
+
+#chat-ui .chat-admin img {
+    width: 50px;
+    padding-bottom: 10px;
+}
+
+#chat-ui .chat-admin span {
+    padding: 5px;
+    margin: 5px;
+    border: 0.5px solid black;
+    border-radius: 5px;
+}
+
+#online {
+    padding: 5px;
+    color: white;
+    background-color: black;
 }
