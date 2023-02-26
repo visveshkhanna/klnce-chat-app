@@ -1,3 +1,5 @@
+var inputs = {};
+
 var questions = {
     "start": {
         "text": [
@@ -6,8 +8,21 @@ var questions = {
             ],
         "buttons": {
             "Yes": {
-                "text": ["UNDER DEVELOPMENT"],
-                "buttons": [],
+                "text": ["What is your name? "],
+                "buttons": {
+                    "done": {
+                        "text": ["welcome xxxxusername", "Select one of the options below"],
+                        "buttons": {
+                            "login": {
+
+                            },
+                            "circulars": {
+
+                            }
+                        }
+                    }
+                },
+                "input": "username"
             },
             "No": {
                 "text": ["Do you want to join us?"],
@@ -41,33 +56,66 @@ var questions = {
 
 var content = questions["start"];
 var doold = "";
+
+
 function fetchData(ev) {
     var olds = document.querySelector(".olds");
-    content.text.forEach(e => {
-        doold += "<span id='name'>Mr. KLNCE: </span>" + e;
-        doold+="<br>";
-    })
-    doold = doold + "<span id='name'>You: </span>" + ev + "<br>";
-    olds.innerHTML = doold;
+    if(content["input"] == null) {
+        content.text.forEach(e => {
+            doold += "<span id='name'>Mr. KLNCE: </span>" + e;
+            doold+="<br>";
+        })
+        doold = doold + "<span id='name'>You: </span>" + ev + "<br>";
+        olds.innerHTML = doold;
+    }
     var das = document.querySelector(".texts");
     var bus = document.querySelector(".buttons");
+    var inp = document.querySelector(".inputs");
     var text_cont = "";
     var button_cont = "<span id='name'>You: </span>";
     content = content['buttons'][ev];
     var text = content["text"];
     var button = content["buttons"];
+    var input_cont = "";
     text.forEach(e => {
-        text_cont += "<span id='name'>Mr. KLNCE: </span>"+e;
+        var d = e;
+        if (d.match(/(\bxxxx\S+\b)/ig)){
+            d.match(/(\bxxxx\S+\b)/ig).forEach(z => {
+            d = d.replace(z, inputs[z.replace("xxxx", "")]);
+        });
+        }
+        text_cont += "<span id='name'>Mr. KLNCE: </span>"+d;
         text_cont += "<br>";
     });
     for(var e in button) {
         let a = '<button onclick="fetchData(\''+e+'\')">'+e+'</button>';
         button_cont += a;
     }
-    console.log(doold);
+
     das.innerHTML = text_cont;
+
+    if (content["input"]) {
+        var cont = content["input"];
+        //console.log(cont);
+        let a = '<center><input type="text" id="'+cont+'"></input><button onclick=inputhandle("'+cont+'") id="'+cont+'">done</button></center>';
+        input_cont = a;
+        inp.innerHTML = input_cont;
+        //console.log('hi');
+        button_cont="";
+    }
+    
     bus.innerHTML = button_cont;
     
+}
+
+
+function inputhandle(ev) {
+    var cont = document.getElementById(ev);
+    inputs[ev] = cont.value;
+    console.log(cont.value);
+    cont.remove()
+    document.getElementById(ev).remove();
+    fetchData("done");
 }
 
 function chaticon() {
